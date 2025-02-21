@@ -1,1 +1,5 @@
 <h1>Ola mundo</h1>
+<p th:text = "${nome}"></p>
+<ul>
+    <li th:each = "aluno : ${alunos}" th:text="${aluno}"></li>
+</ul>

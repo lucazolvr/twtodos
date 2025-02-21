@@ -16,7 +16,7 @@ public class Todo {
     private Long id;
 
     @Column(length = 100, nullable = false)
-    private String tittle;
+    private String title;
 
     @Column(nullable = false)
     private LocalDateTime createdAt;
@@ -39,12 +39,12 @@ public class Todo {
         this.id = id;
     }
 
-    public String getTittle() {
-        return tittle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTittle(String tittle) {
-        this.tittle = tittle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public LocalDateTime getCreatedAt() {
@@ -98,7 +98,7 @@ public class Todo {
 
     @Override
     public String toString() {
-        return "Todo [id=" + id + ", tittle=" + tittle + "]";
+        return "Todo [id=" + id + ", title=" + title + "]";
     }
 
     
