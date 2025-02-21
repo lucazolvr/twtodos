@@ -33,6 +33,3 @@ build/
 .vscode/
 h2-database.trace.db
 h2-database.mv.db
-h2-database.mv.db
-h2-database.mv.db
-h2-database.mv.db
