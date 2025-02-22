@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 
+
 @Controller
 public class TodoController {
 
@@ -58,6 +59,21 @@ public class TodoController {
     @PostMapping("/edit/{id}")
     public String edit(Todo todo) {
         todoRepository.save(todo);
+        return "redirect:/";
+    }
+    
+    @GetMapping("/delete/{id}")
+    public ModelAndView delete(@PathVariable Long id){
+        var todo = todoRepository.findById(id);
+        if (todo.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        return new ModelAndView("todo/delete", Map.of("todo", todo.get()));
+    }
+
+    @PostMapping("/delete/{id}")
+    public String delete(Todo todo) {
+        todoRepository.delete(todo);
         return "redirect:/";
     }
     
