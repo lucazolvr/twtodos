@@ -3,6 +3,9 @@ package br.com.lucazolvr.twtodos.models;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,6 +25,7 @@ public class Todo {
     private LocalDateTime createdAt;
 
     @Column(nullable = false)
+    @DateTimeFormat(iso = ISO.DATE)
     private LocalDate deadline;
 
     @Column(nullable = true)
