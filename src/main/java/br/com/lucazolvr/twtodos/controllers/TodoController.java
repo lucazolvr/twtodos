@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.naming.Binding;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -32,7 +33,7 @@ public class TodoController {
     public ModelAndView List(){
         return new ModelAndView(
             "todo/list",
-             Map.of("todos", todoRepository.findAll()));
+             Map.of("todos", todoRepository.findAll(Sort.by("deadline"))));
 
     }
 
@@ -83,6 +84,17 @@ public class TodoController {
         return "redirect:/";
     }
     
+    @PostMapping("/finish/{id}")
+    public String finish(@PathVariable Long id){
+        var optionalTodo = todoRepository.findById(id);
+        if (optionalTodo.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        var todo = optionalTodo.get();
+        todo.markHasfinished();
+        todoRepository.save(todo);
+        return "redirect:/";
+    }
 
 }
     
