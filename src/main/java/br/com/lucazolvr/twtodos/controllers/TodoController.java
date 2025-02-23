@@ -2,21 +2,21 @@ package br.com.lucazolvr.twtodos.controllers;
 
 import java.util.Map;
 
+import javax.naming.Binding;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.lucazolvr.twtodos.models.Todo;
 import br.com.lucazolvr.twtodos.repositories.TodoRepository;
+import jakarta.validation.Valid;
+
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
-
-
-
 
 
 @Controller
@@ -42,7 +42,10 @@ public class TodoController {
     }
     
     @PostMapping("/create")
-    public String create(Todo todo) {
+    public String create(@Valid Todo todo, BindingResult result) {
+        if (result.hasErrors()) {
+            return "todo/form";
+        }
         todoRepository.save(todo);
         return "redirect:/";
     }
@@ -57,7 +60,10 @@ public class TodoController {
     }
     
     @PostMapping("/edit/{id}")
-    public String edit(Todo todo) {
+    public String edit(@Valid Todo todo, BindingResult result) {
+        if (result.hasErrors()) {
+            return "todo/form";
+        }
         todoRepository.save(todo);
         return "redirect:/";
     }
