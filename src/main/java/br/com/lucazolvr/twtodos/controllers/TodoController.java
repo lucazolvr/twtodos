@@ -2,8 +2,6 @@ package br.com.lucazolvr.twtodos.controllers;
 
 import java.util.Map;
 
-import javax.naming.Binding;
-
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
